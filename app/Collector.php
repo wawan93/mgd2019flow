@@ -50,5 +50,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Collector extends Model
 {
+    public $timestamps = false;
+    protected $guarded = ['id'];
     protected $table = 'collectors_list';
 }
