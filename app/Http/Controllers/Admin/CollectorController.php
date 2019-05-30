@@ -23,7 +23,7 @@ class CollectorController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 25;
+        $perPage = 250;
 
         if (!empty($keyword)) {
             $collector = Collector::where('name', 'LIKE', "%$keyword%")
