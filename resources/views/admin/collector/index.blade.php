@@ -34,7 +34,7 @@
                                 <tbody>
                                 @foreach($collector as $item)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->id }}</td>
                                         <td>{{ $item->name }}</td><td>{{ $item->surname }}</td><td>{{ $item->status }}</td>
                                         <td>
                                             <a href="{{ url('/admin/collector/' . $item->id) }}" title="View Collector"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
