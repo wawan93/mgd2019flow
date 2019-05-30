@@ -53,4 +53,9 @@ class Collector extends Model
     public $timestamps = false;
     protected $guarded = ['id'];
     protected $table = 'collectors_list';
+
+    public function getCreatedAtColumn()
+    {
+        return "date";
+    }
 }
