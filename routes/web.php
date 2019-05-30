@@ -11,10 +11,11 @@
 |
 */
 
-Route::get('/', 'Admin\\CollectorController@index');
+Route::get('/', 'Admin\\ResearchController@index');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('admin/collector', 'Admin\\CollectorController');
+Route::resource('admin/research', 'Admin\\ResearchController');
+

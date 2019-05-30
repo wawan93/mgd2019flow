@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Collector;
 use Illuminate\Http\Request;
 
-class CollectorController extends Controller
+class ResearchController extends Controller
 {
     public function __construct()
     {
@@ -34,7 +34,7 @@ class CollectorController extends Controller
             $collector = Collector::latest()->paginate($perPage);
         }
 
-        return view('admin.collector.index', compact('collector'));
+        return view('admin.research.index', compact('collector'));
     }
 
     /**
@@ -44,7 +44,7 @@ class CollectorController extends Controller
      */
     public function create()
     {
-        return view('admin.collector.create');
+        return view('admin.research.create');
     }
 
     /**
@@ -61,7 +61,7 @@ class CollectorController extends Controller
         
         Collector::create($requestData);
 
-        return redirect('admin/collector')->with('flash_message', 'Collector added!');
+        return redirect('admin/research')->with('flash_message', 'Collector added!');
     }
 
     /**
@@ -75,7 +75,7 @@ class CollectorController extends Controller
     {
         $collector = Collector::findOrFail($id);
 
-        return view('admin.collector.show', compact('collector'));
+        return view('admin.research.show', compact('collector'));
     }
 
     /**
@@ -89,7 +89,7 @@ class CollectorController extends Controller
     {
         $collector = Collector::findOrFail($id);
 
-        return view('admin.collector.edit', compact('collector'));
+        return view('admin.research.edit', compact('collector'));
     }
 
     /**
@@ -108,7 +108,7 @@ class CollectorController extends Controller
         $collector = Collector::findOrFail($id);
         $collector->update($requestData);
 
-        return redirect('admin/collector')->with('flash_message', 'Collector updated!');
+        return redirect('admin/research')->with('flash_message', 'Collector updated!');
     }
 
     /**
@@ -122,6 +122,6 @@ class CollectorController extends Controller
     {
         Collector::destroy($id);
 
-        return redirect('admin/collector')->with('flash_message', 'Collector deleted!');
+        return redirect('admin/research')->with('flash_message', 'Collector deleted!');
     }
 }

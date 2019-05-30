@@ -7,11 +7,11 @@
                 <div class="card">
                     <div class="card-header">Collector</div>
                     <div class="card-body">
-                        <a href="{{ url('/admin/collector/create') }}" class="btn btn-success btn-sm" title="Add New Collector">
+                        <a href="{{ url('/admin/research/create') }}" class="btn btn-success btn-sm" title="Add New Collector">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
 
-                        <form method="GET" action="{{ url('/admin/collector') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+                        <form method="GET" action="{{ url('/admin/research') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
                                 <span class="input-group-append">
@@ -37,8 +37,8 @@
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->name }}</td><td>{{ $item->surname }}</td><td>{{ $item->status }}</td>
                                         <td>
-                                            <a href="{{ url('/admin/collector/' . $item->id) }}" title="View Collector"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                            <a href="{{ url('/admin/collector/' . $item->id . '/edit') }}" title="Edit Collector"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                            <a href="{{ url('/admin/research/' . $item->id) }}" title="View Collector"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+                                            <a href="{{ url('/admin/research/' . $item->id . '/edit') }}" title="Edit Collector"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
                                         </td>
                                     </tr>
                                 @endforeach
