@@ -33,9 +33,19 @@ class InterviewController extends Controller
         if (!empty($keyword)) {
             $collector = $query->where('name', 'LIKE', "%$keyword%")
                 ->orWhere('surname', 'LIKE', "%$keyword%")
-                ->latest();
+                ->orWhereRaw('DATE_FORMAT(interview_date, \'%d/%m\') LIKE ?', "%$keyword%")
+                ->orWhereRaw('DATE_FORMAT(interview_date, \'%d.%m\') LIKE ?', "%$keyword%")
+                ->orWhereRaw('DATE_FORMAT(interview_date, \'%d-%m\') LIKE ?', "%$keyword%")
+                ->orWhereRaw('DATE_FORMAT(interview_date, \'%d %m\') LIKE ?', "%$keyword%")
+                ->orWhereRaw('DATE_FORMAT(interview_date, \'%d%m\') LIKE ?', "%$keyword%")
+                ->orWhereRaw('DATE_FORMAT(interview_date, \'%m/%d\') LIKE ?', "%$keyword%")
+                ->orWhereRaw('DATE_FORMAT(interview_date, \'%m.%d\') LIKE ?', "%$keyword%")
+                ->orWhereRaw('DATE_FORMAT(interview_date, \'%m-%d\') LIKE ?', "%$keyword%")
+                ->orWhereRaw('DATE_FORMAT(interview_date, \'%m %d\') LIKE ?', "%$keyword%")
+                ->orWhereRaw('DATE_FORMAT(interview_date, \'%m%d\') LIKE ?', "%$keyword%")
+                ->paginate($perPage);
         } else {
-            $collector = $query->latest()->paginate($perPage);
+            $collector = $query->paginate($perPage);
         }
 
         return view('admin.interview.index', compact('collector'));
