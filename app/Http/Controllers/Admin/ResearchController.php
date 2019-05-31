@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use App\Collector;
 use Illuminate\Http\Request;
 
@@ -56,9 +55,9 @@ class ResearchController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
-        
+
         Collector::create($requestData);
 
         return redirect('admin/research')->with('flash_message', 'Collector added!');
@@ -67,7 +66,7 @@ class ResearchController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return \Illuminate\View\View
      */
@@ -81,7 +80,7 @@ class ResearchController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return \Illuminate\View\View
      */
@@ -96,15 +95,14 @@ class ResearchController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param  int  $id
+     * @param int $id
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, $id)
     {
-        
         $requestData = $request->all();
-        
+
         $collector = Collector::findOrFail($id);
         $collector->update($requestData);
 
@@ -114,7 +112,7 @@ class ResearchController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
@@ -123,5 +121,42 @@ class ResearchController extends Controller
         Collector::destroy($id);
 
         return redirect('admin/research')->with('flash_message', 'Collector deleted!');
+    }
+
+    public function ajaxResearch(Request $request)
+    {
+        $researchFields = [
+            'manager_id',
+            'status',
+            'edition_final',
+            'manufacturer',
+            'paid_date',
+            'final_date',
+            'ship_date',
+            'ship_time',
+            'contact',
+            'invoice_subject',
+            'mail_sent',
+            'set_id',
+            'in_progress',
+            'comment',
+        ];
+
+        if (in_array($request->get('field'), $researchFields)) {
+            if (Gate::denies('update-research')) {
+                return response()->json(['error' => 'true', 'error_text' => 'нет прав на изменение этого поля']);
+            }
+        }
+
+        $collector = Collector::where('id', $request->get('id'))->firstOrFail();
+
+        $value = $request->get('value');
+        if (in_array($value, ['true', 'false'])) {
+            $value = intval($value == 'true');
+        }
+        $collector->{$request->get('field')} = $value;
+        $collector->save();
+
+        return response()->json(['error' => 'false']);
     }
 }

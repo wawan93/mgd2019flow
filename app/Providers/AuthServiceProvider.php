@@ -25,6 +25,21 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('update-research', static::checkExtraClass("c_research"));
+    }
+
+    protected static function checkExtraClass(string $class)
+    {
+        return function ($user) use ($class) {
+            if ($user->role !== 'admin') {
+                return false;
+            }
+
+            if (strpos($user->extra_class, $class) === false) {
+                return false;
+            }
+
+            return true;
+        };
     }
 }

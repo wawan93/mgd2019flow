@@ -47,6 +47,15 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Collector whereSurname($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Collector whereUtmList($value)
  * @mixin \Eloquent
+ * @property string|null $created_at
+ * @property string|null $updated_at
+ * @property string|null $research_status
+ * @property string|null $research_comment
+ * @property-read mixed $status_text
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Collector whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Collector whereResearchComment($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Collector whereResearchStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Collector whereUpdatedAt($value)
  */
 class Collector extends Model
 {
@@ -57,5 +66,34 @@ class Collector extends Model
     public function getCreatedAtColumn()
     {
         return "date";
+    }
+
+    public static function allStatuses() {
+        $all = [
+            "" => "",
+            "new" => "Не проверен",
+            "research" => "в рисёрче",
+            "research_done" => "прошёл рисёрч",
+            "interview_accespted" => "записан на собеседование",
+            "accepted" => "принят",
+            "declined" => "отклонён",
+            "fired" => "уволен",
+        ];
+        return $all;
+    }
+
+    public static function researchStatuses() {
+        $all = [
+            "" => "",
+            "declined" => "Отклонить",
+            "attention" => "Осторожно",
+            "approved" => "Нет проблем",
+        ];
+        return $all;
+    }
+
+    public function getStatusTextAttribute()
+    {
+        return self::allStatuses()[$this->status];
     }
 }

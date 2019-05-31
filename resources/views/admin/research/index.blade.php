@@ -25,17 +25,26 @@
                         <br/>
                         <br/>
                         <div class="table-responsive">
-                            <table class="table table-striped">
+                            <table class="table table-striped sorting tablesorter">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Name</th><th>Surname</th><th>Status</th><th>Actions</th>
+                                        <th>#</th><th>Name</th><th>Status</th><th>Comment</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($collector as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
-                                        <td>{{ $item->name }}</td><td>{{ $item->surname }}</td><td>{{ $item->status }}</td>
+                                        <td>{{ $item->name }} {{ $item->surname }}</td>
+                                        <td>
+                                            {!! Form::select('research_status', \App\Collector::researchStatuses(), $item->research_status, [
+                                                'class' => 'form-control',
+                                                'data-id' => $item->id,
+                                                'data-field' => 'research_status'
+                                            ]) !!}                                        </td>
+                                        <td>
+                                            {{ $item->research_comment }}
+                                        </td>
                                         <td>
                                             <a href="{{ url('/admin/research/' . $item->id) }}" title="View Collector"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/admin/research/' . $item->id . '/edit') }}" title="Edit Collector"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
@@ -52,4 +61,60 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript" src="/js/jquery.tablesorter.min.js"></script>
+    <script type="text/javascript">
+        (function($) {
+            var filters = {
+                'status': '',
+            };
+
+            var textExtractor = function(node) {
+                var $node = $(node);
+                var value =  $node.find('input').val() || $node.find('select').val() || $node.text();
+                return value;
+            };
+
+            var update = function(_this) {
+                var id = _this.data('id');
+                var field = _this.data('field');
+                var value = _this.val();
+                if (_this.attr('type') == 'checkbox') {
+                    value = _this.prop('checked');
+                }
+
+                smartAjax('/admin/ajax/research/save', {
+                    id: id,
+                    field: field,
+                    value: value,
+                    _method: "PATCH",
+                }, function(msg) {
+                    console.log(msg);
+                }, function(msg) {
+                    alert('error: ', msg.error_text);
+                }, 'research_flow', 'POST');
+            };
+
+            $(document).ready(function(){
+                $('.filter').on('change', function (e) {
+                    var _this = $(this);
+                    var filter = _this.attr('name').split(/.+\[(.+)\]/)[1];
+                    var value = _this.val();
+                    filters[filter] = value;
+                    console.log($('#filter-form').submit());
+                });
+
+                $('.tablesorter').tablesorter({
+                    textExtraction: textExtractor
+                });
+
+                $('tbody').on('change', '.form-control', function() {
+                    var _this = $(this);
+                    update(_this);
+                });
+            });
+        })($ || jQuery);
+    </script>
 @endsection
