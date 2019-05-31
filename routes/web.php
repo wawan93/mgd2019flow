@@ -19,4 +19,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('admin/research', 'Admin\\ResearchController');
 
-Route::patch("/admin/ajax/research/save", "Admin\\ResearchController@ajaxResearch");
+Route::patch("/admin/ajax/research/save", "Admin\\ResearchController@ajaxUpdate");

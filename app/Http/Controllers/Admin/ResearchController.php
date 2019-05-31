@@ -124,7 +124,7 @@ class ResearchController extends Controller
         return redirect('admin/research')->with('flash_message', 'Collector deleted!');
     }
 
-    public function ajaxResearch(Request $request)
+    public function ajaxUpdate(Request $request)
     {
         $researchFields = [
             'research_status',
