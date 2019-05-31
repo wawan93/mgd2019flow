@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Collector;
+use Gate;
 use Illuminate\Http\Request;
 
 class ResearchController extends Controller
@@ -126,20 +127,8 @@ class ResearchController extends Controller
     public function ajaxResearch(Request $request)
     {
         $researchFields = [
-            'manager_id',
-            'status',
-            'edition_final',
-            'manufacturer',
-            'paid_date',
-            'final_date',
-            'ship_date',
-            'ship_time',
-            'contact',
-            'invoice_subject',
-            'mail_sent',
-            'set_id',
-            'in_progress',
-            'comment',
+            'research_status',
+            'research_comment',
         ];
 
         if (in_array($request->get('field'), $researchFields)) {
