@@ -78,12 +78,12 @@ class Collector extends Model
         $all = [
             "" => "",
             "new" => "Не проверен",
-            "research" => "в рисёрче",
-            "research_done" => "прошёл рисёрч",
-            "interview_accespted" => "записан на собеседование",
-            "accepted" => "принят",
-            "declined" => "отклонён",
-            "fired" => "уволен",
+            "research" => "В рисёрч",
+            "research_done" => "Прошёл рисёрч",
+            "interview_accespted" => "Записан на собеседование",
+            "accepted" => "Принят",
+            "declined" => "Отклонён",
+            "fired" => "Уволен",
         ];
         return $all;
     }

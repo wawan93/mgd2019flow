@@ -40,6 +40,7 @@
                                     <th>Гражданство</th>
                                     <th>Соцсети</th>
                                     <th>Статус</th>
+                                    <th>Вердикт</th>
                                     <th>Коммент</th>
                                     <th>Дата</th>
                                 </tr>
@@ -68,6 +69,14 @@
                                                     <a target="_blank" href="{{ $item->social_fb }}">FB</a>
                                                 @endif
                                                 </span>
+                                        </td>
+                                        <td>
+                                            {!! Form::select('status', \App\Collector::allStatuses(), $item->status, [
+                                                'class' => 'form-control',
+                                                'data-id' => $item->id,
+                                                'style' => 'min-width: 150px',
+                                                'data-field' => 'status'
+                                            ]) !!}
                                         </td>
                                         <td>
                                             {!! Form::select('research_status', \App\Collector::researchStatuses(), $item->research_status, [

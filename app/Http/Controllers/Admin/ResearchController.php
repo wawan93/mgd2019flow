@@ -25,13 +25,16 @@ class ResearchController extends Controller
         $keyword = $request->get('search');
         $perPage = 250;
 
+        $query = Collector::oldest()
+            ->whereIn("status", ['', 'new', 'research']);
+
         if (!empty($keyword)) {
-            $collector = Collector::where('name', 'LIKE', "%$keyword%")
+            $collector = $query->where('name', 'LIKE', "%$keyword%")
                 ->orWhere('surname', 'LIKE', "%$keyword%")
                 ->orWhere('status', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
+                ->paginate($perPage);
         } else {
-            $collector = Collector::latest()->paginate($perPage);
+            $collector = $query->paginate($perPage);
         }
 
         return view('admin.research.index', compact('collector'));
@@ -127,6 +130,7 @@ class ResearchController extends Controller
     public function ajaxUpdate(Request $request)
     {
         $researchFields = [
+            'status',
             'research_status',
             'research_comment',
         ];
@@ -148,7 +152,6 @@ class ResearchController extends Controller
             $value = intval($value == 'true');
         }
         $collector->{$request->get('field')} = $value;
-        $collector->status = 'research_done';
         $collector->save();
 
         return response()->json(['error' => 'false']);
