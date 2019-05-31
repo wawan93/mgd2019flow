@@ -37,6 +37,7 @@
                                     <th>Email</th>
                                     <th>Вердикт ресерча</th>
                                     <th>Комментарий ресерча</th>
+                                    <th>Дата интервью</th>
                                     <th>Статус</th>
                                     <th>Коммент</th>
                                 </tr>
@@ -51,6 +52,19 @@
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->research_status_text }}</td>
                                         <td>{{ $item->research_comment }}</td>
+                                        <td>
+                                            <input
+                                                    data-id="{{ $item->id }}"
+                                                    data-field="interview_date"
+                                                    name="interview_date"
+                                                    type="datetime-local"
+                                                    class="form-control"
+                                                    style="width: 250px;"
+                                                    value="{{ $item->interview_date ?
+                                                     \Carbon\Carbon::createFromTimeString($item->interview_date)->toDateTimeLocalString() :
+                                                      "" }}"
+                                            />
+                                        </td>
                                         <td>
                                             {!! Form::select('status', \App\Collector::allStatuses(), $item->status, [
                                                 'class' => 'form-control',
@@ -67,7 +81,7 @@
                                                     'class' => 'form-control',
                                                     'data-id' => $item->id,
                                                     'style' => 'min-width: 300px',
-                                                    'rows' => '4',
+                                                    'rows' => '3',
                                                     'cols' => '20',
                                                     'data-field' => 'comment',
                                                 ]

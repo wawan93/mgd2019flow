@@ -56,6 +56,11 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Collector whereResearchComment($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Collector whereResearchStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Collector whereUpdatedAt($value)
+ * @property string|null $comment
+ * @property string|null $interview_date
+ * @property-read mixed $research_status_text
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Collector whereComment($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Collector whereInterviewDate($value)
  */
 class Collector extends Model
 {
