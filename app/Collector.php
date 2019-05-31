@@ -68,7 +68,8 @@ class Collector extends Model
         return "date";
     }
 
-    public static function allStatuses() {
+    public static function allStatuses()
+    {
         $all = [
             "" => "",
             "new" => "Не проверен",
@@ -82,7 +83,8 @@ class Collector extends Model
         return $all;
     }
 
-    public static function researchStatuses() {
+    public static function researchStatuses()
+    {
         $all = [
             "" => "",
             "declined" => "Отклонить",
@@ -95,5 +97,10 @@ class Collector extends Model
     public function getStatusTextAttribute()
     {
         return self::allStatuses()[$this->status];
+    }
+
+    public function getResearchStatusTextAttribute()
+    {
+        return self::researchStatuses()[$this->research_status];
     }
 }

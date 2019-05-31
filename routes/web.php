@@ -18,5 +18,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('admin/research', 'Admin\\ResearchController');
+Route::resource('admin/interview', 'Admin\\InterviewController');
 
 Route::patch("/admin/ajax/research/save", "Admin\\ResearchController@ajaxUpdate");
+Route::patch("/admin/ajax/interview/save", "Admin\\InterviewController@ajaxUpdate");

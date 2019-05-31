@@ -131,6 +131,10 @@ class ResearchController extends Controller
             'research_comment',
         ];
 
+        if (!in_array($request->get('field'), $researchFields)) {
+            return response()->json(['error'=>'true', 'error_text'=>'нельзя менять это поле']);
+        }
+
         if (in_array($request->get('field'), $researchFields)) {
             if (Gate::denies('update-research')) {
                 return response()->json(['error' => 'true', 'error_text' => 'нет прав на изменение этого поля']);
@@ -144,6 +148,7 @@ class ResearchController extends Controller
             $value = intval($value == 'true');
         }
         $collector->{$request->get('field')} = $value;
+        $collector->status = 'research_done';
         $collector->save();
 
         return response()->json(['error' => 'false']);
