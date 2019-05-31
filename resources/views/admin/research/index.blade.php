@@ -27,7 +27,7 @@
 
                         <br/>
                         <br/>
-                        <div class="table-responsive">
+                        <div class="">
                             <table class="table table-striped sorting tablesorter">
                                 <thead>
                                 <tr>
