@@ -41,6 +41,7 @@
                                     <th>Соцсети</th>
                                     <th>Статус</th>
                                     <th>Коммент</th>
+                                    <th>Дата</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -89,6 +90,9 @@
                                                     'data-field' => 'research_comment',
                                                 ]
                                             ) !!}
+                                        </td>
+                                        <td>
+                                            {{ $item->date }}
                                         </td>
                                     </tr>
                                 @endforeach
