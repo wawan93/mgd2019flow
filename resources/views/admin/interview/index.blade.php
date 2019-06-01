@@ -39,6 +39,7 @@
                                     <th>Комментарий ресерча</th>
                                     <th>Дата интервью</th>
                                     <th>Статус</th>
+                                    <th>Вердикт</th>
                                     <th>Коммент</th>
                                 </tr>
                                 </thead>
@@ -74,16 +75,24 @@
                                             ]) !!}
                                         </td>
                                         <td>
+                                            {!! Form::select('interview_status', \App\Collector::researchStatuses(), $item->interview_status, [
+                                                'class' => 'form-control',
+                                                'data-id' => $item->id,
+                                                'style' => 'min-width: 150px',
+                                                'data-field' => 'interview_status'
+                                            ]) !!}
+                                        </td>
+                                        <td>
                                             {!! Form::textarea(
-                                                'comment',
-                                                $item->comment,
+                                                'interview_comment',
+                                                $item->interview_comment,
                                                 [
                                                     'class' => 'form-control',
                                                     'data-id' => $item->id,
                                                     'style' => 'min-width: 300px',
                                                     'rows' => '3',
                                                     'cols' => '20',
-                                                    'data-field' => 'comment',
+                                                    'data-field' => 'interview_comment',
                                                 ]
                                             ) !!}
                                         </td>
