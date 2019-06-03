@@ -15,7 +15,6 @@ class AddInterviewStatuses extends Migration
     {
         Schema::table('collectors_list', function (Blueprint $table) {
             $table->enum("interview_status", ["", "approved", "declined", "attention"])->nullable();
-            $table->text("interview_comment")->nullable();
         });
     }
 

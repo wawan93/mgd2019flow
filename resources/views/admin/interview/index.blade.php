@@ -79,7 +79,7 @@
                                         </td>
                                         <td>
                                             {!! Form::textarea(
-                                                'interview_comment',
+                                                'comment',
                                                 $item->interview_comment,
                                                 [
                                                     'class' => 'form-control',
@@ -87,7 +87,7 @@
                                                     'style' => 'min-width: 300px',
                                                     'rows' => '3',
                                                     'cols' => '20',
-                                                    'data-field' => 'interview_comment',
+                                                    'data-field' => 'comment',
                                                 ]
                                             ) !!}
                                         </td>
