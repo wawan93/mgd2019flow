@@ -19,6 +19,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('admin/research', 'Admin\\ResearchController');
 Route::resource('admin/interview', 'Admin\\InterviewController');
+Route::resource('admin/accepted', 'Admin\\AcceptedController');
 
 Route::patch("/admin/ajax/research/save", "Admin\\ResearchController@ajaxUpdate");
 Route::patch("/admin/ajax/interview/save", "Admin\\InterviewController@ajaxUpdate");
+Route::patch("/admin/ajax/accepted/save", "Admin\\AcceptedController@ajaxUpdate");

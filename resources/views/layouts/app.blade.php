@@ -36,6 +36,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/admin/interview') }}">{{ __('Собеседования') }}</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/admin/accepted') }}">{{ __('Принятые') }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
