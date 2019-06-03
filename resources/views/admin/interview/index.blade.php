@@ -80,7 +80,7 @@
                                         <td>
                                             {!! Form::textarea(
                                                 'comment',
-                                                $item->interview_comment,
+                                                $item->comment,
                                                 [
                                                     'class' => 'form-control',
                                                     'data-id' => $item->id,
