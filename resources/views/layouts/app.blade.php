@@ -39,6 +39,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/admin/accepted') }}">{{ __('Принятые') }}</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/admin/declined') }}">{{ __('Отклонённые') }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
