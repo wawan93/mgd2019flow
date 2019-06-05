@@ -9,7 +9,7 @@ use Carbon\Carbon;
 use Gate;
 use Illuminate\Http\Request;
 
-class InterviewController extends Controller
+class DeclinedController extends Controller
 {
     public function __construct()
     {
@@ -27,8 +27,7 @@ class InterviewController extends Controller
         $perPage = 250;
 
         $query = Collector::latest()
-            ->whereIn('status', ['research_done', 'interview_accespted', 'new'])
-            ->where('research_status', '!=', 'declined');
+            ->where('status', '=', 'declined');
 
         if (!empty($keyword)) {
             $collector = $query->where('name', 'LIKE', "%$keyword%")
@@ -48,7 +47,7 @@ class InterviewController extends Controller
             $collector = $query->paginate($perPage);
         }
 
-        return view('admin.interview.index', compact('collector'));
+        return view('admin.declined.index', compact('collector'));
     }
 
     public function ajaxUpdate(Request $request)
