@@ -33,6 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   toggleFieldsButtons.forEach(el => {
     el.addEventListener('click', (e) => {
+      e.preventDefault()
+
       const fieldsDiv = el.parentNode.querySelector('.collector-table__passport-fields')
       const fieldsState = getComputedStyle(fieldsDiv).display
 
