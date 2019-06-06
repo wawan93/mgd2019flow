@@ -67,10 +67,10 @@
             $item->comment,
             [
               'class' => 'form-control',
-              'data-id' => $item->id,
               'style' => 'min-width: 120px',
               'rows' => '3',
               'cols' => '20',
+              'data-id' => $item->id,
               'data-field' => 'comment',
             ]
             ) !!}
