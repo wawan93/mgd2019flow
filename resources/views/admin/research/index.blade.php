@@ -52,18 +52,26 @@
                                         <td>{{ $item->aboutself }}</td>
                                         <td>{{ $item->has_citizenship }}</td>
                                         <td>
-                                            <span>@if($item->social_vk)
-                                                    <a target="_blank" href="{{ $item->social_vk }}">VK</a>
-                                                @endif</span>&nbsp;<span>
+                                            @if($item->social_vk)
+                                                <span>
+                                                    VK: <a target="_blank" href="{{ $item->social_vk }}">{{ $item->social_vk }}</a>
+                                                </span> <br>
+                                            @endif
                                             @if($item->social_tw)
-                                                    <a target="_blank" href="{{ $item->social_tw }}">TW</a>
-                                                @endif
-                                                </span>&nbsp;<span>
-
+                                                <span>
+                                                    TW: <a target="_blank" href="{{ $item->social_tw }}">{{ $item->social_tw }}</a>
+                                                </span> <br>
+                                            @endif
                                             @if($item->social_fb)
-                                                    <a target="_blank" href="{{ $item->social_fb }}">FB</a>
-                                                @endif
+                                                <span>
+                                                    FB: <a target="_blank" href="{{ $item->social_fb }}">{{ $item->social_fb }}</a>
+                                                </span> <br>
+                                            @endif
+                                            @if($item->social_other)
+                                                <span>
+                                                    {{ $item->social_other }}
                                                 </span>
+                                            @endif
                                         </td>
                                         <td>
                                             {!! Form::select('status', \App\Collector::allStatuses(), $item->status, [
