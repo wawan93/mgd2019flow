@@ -61,7 +61,7 @@ class AcceptedController extends Controller
             'contract_signed',
             'notary_passed',
             'training_passed',
-            'telegram_attached'
+            'telegram_attached',
         ];
 
         $field = $request->get('field');

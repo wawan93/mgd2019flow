@@ -54,18 +54,10 @@ class InterviewController extends Controller
     public function ajaxUpdate(Request $request)
     {
         $interviewFields = [
-            'surname',
-            'name',
-            'middlename',
-            'birthday',
             'interview_date',
             'status',
             'comment',
             'interview_status',
-            'passport_number',
-            'passport_issue_date',
-            'passport_issued_by',
-            'passport_address'
         ];
 
         $field = $request->get('field');
