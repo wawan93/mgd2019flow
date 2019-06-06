@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $middlename
  * @property string|null $phone
  * @property string|null $email
- * @property string|null $birthday
+ * @property date|null $birthday
  * @property string|null $has_citizenship
  * @property string|null $social_vk
  * @property string|null $social_fb
@@ -25,6 +25,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $origin
  * @property string|null $utm_list
  * @property string|null $date
+ * @property boolean|null $briefing_passed
+ * @property boolean|null $contract_signed
+ * @property boolean|null $notary_passed
+ * @property boolean|null $training_passed
+ * @property boolean|null $telegram_attached
+ * @property json|null $passport
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Collector newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Collector newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Collector query()
