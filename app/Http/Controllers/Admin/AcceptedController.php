@@ -54,6 +54,10 @@ class AcceptedController extends Controller
     public function ajaxUpdate(Request $request)
     {
         $interviewFields = [
+            'surname',
+            'name',
+            'middlename',
+            'birthday',
             'interview_date',
             'status',
             'comment',
@@ -62,6 +66,10 @@ class AcceptedController extends Controller
             'notary_passed',
             'training_passed',
             'telegram_attached',
+            'passport_number',
+            'passport_issue_date',
+            'passport_issued_by',
+            'passport_address'
         ];
 
         $field = $request->get('field');
