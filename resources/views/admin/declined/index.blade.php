@@ -30,6 +30,7 @@
                   <th>Имя</th>
                   <th>Телефон</th>
                   <th>Email</th>
+                  <th>Статус</th>
                   <th>Вердикт ресерча</th>
                   <th>Комментарий ресерча</th>
                   <th>Дата интервью</th>
@@ -44,7 +45,22 @@
                     <td>{{ $item->surname }} {{ $item->name }} {{ $item->middlename }} </td>
                     <td>{{ $item->phone }}</td>
                     <td>{{ $item->email }}</td>
-                    <td>{{ $item->research_status_text }}</td>
+                    <td>
+                        {!! Form::select('status', \App\Collector::allStatuses(), $item->status, [
+                            'class' => 'form-control',
+                            'data-id' => $item->id,
+                            'style' => 'min-width: 150px',
+                            'data-field' => 'status'
+                        ]) !!}
+                    </td>
+                    <td>
+                        {!! Form::select('research_status', \App\Collector::researchStatuses(), $item->research_status, [
+                            'class' => 'form-control',
+                            'data-id' => $item->id,
+                            'style' => 'min-width: 150px',
+                            'data-field' => 'research_status'
+                        ]) !!}
+                    </td>
                     <td>{{ $item->research_comment }}</td>
                     <td>
                       <input
