@@ -53,6 +53,7 @@ class DeclinedController extends Controller
     public function ajaxUpdate(Request $request)
     {
         $interviewFields = [
+            'research_status',
             'interview_date',
             'status',
             'comment',
