@@ -27,8 +27,7 @@ class AcceptedController extends Controller
         $perPage = 250;
 
         $query = Collector::latest()
-            ->where('status', '=', 'accepted')
-            ->where('research_status', '!=', 'declined');
+            ->where('status', '=', 'accepted');
 
         if (!empty($keyword)) {
             $collector = $query->where('name', 'LIKE', "%$keyword%")
