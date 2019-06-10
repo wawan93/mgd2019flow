@@ -21,6 +21,7 @@ Route::resource('admin/research', 'Admin\\ResearchController');
 Route::resource('admin/interview', 'Admin\\InterviewController');
 Route::resource('admin/accepted', 'Admin\\AcceptedController');
 Route::resource('admin/declined', 'Admin\\DeclinedController');
+Route::resource('admin/events', 'Admin\\EventsController');
 
 Route::patch("/admin/ajax/research/save", "Admin\\ResearchController@ajaxUpdate");
 Route::patch("/admin/ajax/interview/save", "Admin\\InterviewController@ajaxUpdate");
