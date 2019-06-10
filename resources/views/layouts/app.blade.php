@@ -39,7 +39,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/admin/interview') }}">
                                 {{ __('Собеседования') }}
-                                ({{ ($counts['research_done'] ?? 0) + ($counts['interview_accespted'] ?? 0) }})
+                                ({{ ($counts['research_done'] ?? 0) + ($counts['interview_accepted'] ?? 0) }})
                             </a>
                         </li>
                         <li class="nav-item">

@@ -27,7 +27,7 @@ class InterviewController extends Controller
         $perPage = 250;
 
         $query = Collector::latest()
-            ->whereIn('status', ['research_done', 'interview_accespted', 'new'])
+            ->whereIn('status', ['research_done', 'interview_accepted', 'new'])
             ->where('research_status', '!=', '');
 
         if (!empty($keyword)) {
