@@ -28,7 +28,7 @@ class EventController extends Controller
         $perPage = 100;
 
         $query = Event::latest();
-        $acceptedCollectors = Collector::latest()->where('status', '=', 'accepted')->get();
+        $acceptedCollectors = Collector::latest()->orderBy('surname', 'asc')->where('status', '=', 'accepted')->get();
 
         if (!empty($keyword)) {
             $events = $query->where('name', 'LIKE', "%$keyword%")->paginate($perPage);
