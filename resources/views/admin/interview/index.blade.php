@@ -188,6 +188,7 @@
                               'rows' => '3',
                             ]
                         ) !!}
+                        </label>
                         <label class="col-form-label col-form-label-sm">Прописка
                           {!! Form::textarea(
                               'passport_address',
