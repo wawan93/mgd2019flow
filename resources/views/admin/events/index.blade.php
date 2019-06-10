@@ -21,56 +21,115 @@
       <div class="modal fade new-event-modal" id="newEvent" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Новое событие</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="form-group">
-                <label>Название</label>
-                <input name="name" type="text" class="form-control">
+            <div class="modal-header">
+              <h5 class="modal-title">Новое событие</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-            <div class="form-group">
-                <label>Дата и время</label>
-                <input name="starts_at" type="datetime-local" class="form-control">
-            </div>
-            <div class="form-group">
-                <label>Максимально число участников</label>
-                <input name="max_attendees" type="number" class="form-control">
-            </div>
-            <div class="form-group">
-                <label>Участники</label>
-                <select name="collectors" type="text" class="form-control new-event-modal__collectors">
-                @foreach($acceptedCollectors as $collector)
-                  <option value="{{$collector->id}}">{{$collector->surname}} {{$collector->name}}</option>
-                @endforeach
-                </select>
-                <small id="emailHelp" class="form-text text-muted">Начните вводить имя или фамилию сборщика</small>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-            <button type="button" class="btn btn-primary">Сохранить</button>
-          </div>
+            <form action="/admin/events" method="post">
+              @csrf
+              <div class="modal-body">
+                  <div class="form-group">
+                      <label>Название</label>
+                      <input required name="name" type="text" class="form-control">
+                  </div>
+                  <div class="form-group">
+                      <label>Дата и время</label>
+                      <input required name="starts_at" type="datetime-local" class="form-control">
+                  </div>
+                  <div class="form-group">
+                      <label>Максимально число участников</label>
+                      <input name="max_attendees" type="number" class="form-control">
+                  </div>
+                  <div class="form-group">
+                      <label>Участники</label>
+                      <select multiple="multiple" name="collectors[]" type="text" class="form-control new-event-modal__collectors">
+                      @foreach($acceptedCollectors as $collector)
+                      <option value="{{$collector->id}}">{{$collector->surname}} {{$collector->name}}</option>
+                      @endforeach
+                      </select>
+                      <small id="emailHelp" class="form-text text-muted">Начните вводить имя или фамилию принятого сборщика</small>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Сохранить</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     <br/>
     <br/>
     <div>
-    <table class="table table-striped sorting tablesorter">
+    <table class="table sorting tablesorter events-table">
     <thead>
       <tr>
-      <th>#</th>
+        <th>#</th>
+        <th>Название</th>
+        <th>Дата и время</th>
+        <th>Участников</th>
+        <th>Участники</th>
       </tr>
     </thead>
       <tbody>
       @foreach($events as $event)
       <?php /** @var \App\Event $event */ ?>
       <tr>
-        <td>{{ $item->id }}</td>
+        <td>{{ $event->id }}</td>
+        <td>
+          {!! Form::text(
+                'name',
+                $event->name,
+                [
+                'class' => 'form-control',
+                'data-id' => $event->id,
+                'data-field' => 'name',
+                'style' => 'min-width: 120px',
+                ]
+              ) !!}
+        </td>
+        <td>
+          <input
+              data-id="{{ $event->id }}"
+              data-field="starts_at"
+              name="starts_at"
+              type="datetime-local"
+              class="form-control"
+              style="width: 220px;"
+              value="{{ $event->starts_at ?
+               \Carbon\Carbon::createFromTimeString($event->starts_at)->toDateTimeLocalString() :
+              "" }}"
+            />
+        </td>
+        <td>
+          {!! Form::text(
+                'max_attendees',
+                $event->max_attendees,
+                [
+                'class' => 'form-control',
+                'data-id' => $event->id,
+                'data-field' => 'max_attendees',
+                'style' => 'min-width: 50px',
+                ]
+              ) !!}
+        </td>
+        <td>
+        <select
+          multiple="multiple"
+          data-id="{{ $event->id }}"
+          data-field="collectors"
+          name="collectors[]"
+          class="form-control events__collectors-select">
+        @foreach($acceptedCollectors as $collector)
+        <option
+          value="{{$collector->id}}"
+          {{in_array($collector->id, $event->collectors()->allRelatedIds()->toArray()) ? "selected='selected'" : ""}}>
+          {{$collector->surname}} {{$collector->name}}
+        </option>
+        @endforeach
+        </select>
+        </td>
       </tr>
       @endforeach
       </tbody>
@@ -106,7 +165,7 @@
     value = _this.prop('checked');
   }
 
-  smartAjax('/admin/ajax/accepted/save', {
+  smartAjax('/admin/ajax/events/save', {
     id: id,
     field: field,
     value: value,

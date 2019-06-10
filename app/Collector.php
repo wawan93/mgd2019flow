@@ -103,6 +103,11 @@ class Collector extends Model
         return $all;
     }
 
+    public function events()
+    {
+        return $this->belongsToMany(Event::class);
+    }
+
     public function getStatusTextAttribute()
     {
         return self::allStatuses()[$this->status];

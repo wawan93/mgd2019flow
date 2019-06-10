@@ -6,6 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   $('.new-event-modal__collectors').select2({
-    theme: 'bootstrap4'
+    theme: 'bootstrap4',
+    multiple: true,
+    allowClear: true
+  })
+
+  $('.events__collectors-select').select2({
+    theme: 'bootstrap4',
+    multiple: true,
+    allowClear: true
   })
 })

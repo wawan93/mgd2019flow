@@ -17,7 +17,6 @@ class CreateCollectorEvent extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('collector_id');
             $table->bigInteger('event_id');
-            $table->timestamps();
         });
     }
 
