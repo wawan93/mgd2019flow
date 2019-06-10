@@ -82,9 +82,7 @@ class Collector extends Model
     public static function allStatuses()
     {
         $all = [
-            "" => "",
             "new" => "Не проверен",
-            "research" => "В рисёрч",
             "research_done" => "Прошёл рисёрч",
             "interview_accespted" => "Записан на собеседование",
             "accepted" => "Принят",
@@ -97,7 +95,6 @@ class Collector extends Model
     public static function researchStatuses()
     {
         $all = [
-            "" => "",
             "declined" => "Отклонить",
             "attention" => "Осторожно",
             "approved" => "Нет проблем",
