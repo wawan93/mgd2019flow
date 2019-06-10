@@ -95,6 +95,7 @@ class Collector extends Model
     public static function researchStatuses()
     {
         $all = [
+            "" => "",
             "declined" => "Отклонить",
             "attention" => "Осторожно",
             "approved" => "Нет проблем",
