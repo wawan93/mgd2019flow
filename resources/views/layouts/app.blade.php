@@ -31,16 +31,28 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/admin/research') }}">{{ __('Ресёрч') }}</a>
+                            <a class="nav-link" href="{{ url('/admin/research') }}">
+                                {{ __('Ресёрч') }}
+                                ({{ ($counts[''] ?? 0) + ($counts['new'] ?? 0) + ($counts['research'] ?? 0) }})
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/admin/interview') }}">{{ __('Собеседования') }}</a>
+                            <a class="nav-link" href="{{ url('/admin/interview') }}">
+                                {{ __('Собеседования') }}
+                                ({{ ($counts['research_done'] ?? 0) + ($counts['interview_accespted'] ?? 0) }})
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/admin/accepted') }}">{{ __('Принятые') }}</a>
+                            <a class="nav-link" href="{{ url('/admin/accepted') }}">
+                                {{ __('Принятые') }}
+                                ({{ $counts['accepted'] ?? 0 }})
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/admin/declined') }}">{{ __('Отклонённые') }}</a>
+                            <a class="nav-link" href="{{ url('/admin/declined') }}">
+                                {{ __('Отклонённые') }}
+                                ({{ $counts['declined'] ?? 0}})
+                            </a>
                         </li>
                     </ul>
 

@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Collector;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -30,6 +32,9 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->environment() === 'production') {
             URL::forceScheme("https");
         }
-            //
+
+        $collectors = Collector::selectRaw("COUNT(*) as cnt, status")->groupBy('status')->get();
+        $counts = $collectors->pluck("cnt", "status")->toArray();
+        View::share("counts", $counts);
     }
 }

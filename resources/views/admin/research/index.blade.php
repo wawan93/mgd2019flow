@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Ресёрч</div>
+                    <div class="card-header">Ресёрч ({{ $collector->count() }})</div>
                     <div class="card-body">
                         <form method="GET" action="{{ url('/admin/research') }}" accept-charset="UTF-8"
                               class="form-inline my-2 my-lg-0 float-right" role="search">
