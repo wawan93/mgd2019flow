@@ -32,3 +32,4 @@ const app = new Vue({
 });
 
 import './admin/collectors'
+import './admin/events'
