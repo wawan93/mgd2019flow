@@ -17,7 +17,7 @@ class CreateEvents extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->dateTime('starts_at');
-            $table->integer('max_attendees');
+            $table->integer('max_attendees')->nullable();
             $table->timestamps();
         });
     }

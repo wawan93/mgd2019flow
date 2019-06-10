@@ -54,6 +54,9 @@
                                 ({{ $counts['declined'] ?? 0}})
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/admin/events') }}">{{ __('События') }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
