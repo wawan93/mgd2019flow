@@ -73,7 +73,7 @@ class AcceptedController extends Controller
 
         $field = $request->get('field');
         if (!in_array($field, $interviewFields)) {
-            return response()->json(['error'=>'true', 'error_text'=>'нельзя менять это поле']);
+            return response()->json(['error' => 'true', 'error_text' => 'нельзя менять это поле']);
         }
 
         $collector = Collector::where('id', $request->get('id'))->firstOrFail();
@@ -87,9 +87,17 @@ class AcceptedController extends Controller
         }
         $collector->{$field} = $value;
         if (!$collector->save()) {
-            return response()->json(['error'=>'true', 'error_text'=>'ошибка при схоранении']);
+            return response()->json(['error' => 'true', 'error_text' => 'ошибка при схоранении']);
         }
 
         return response()->json(['error' => 'false']);
+    }
+
+    public function ajaxGenerate($candidate, $id)
+    {
+        $collector = Collector::find($id);
+        $pdf = \PDF::loadView("pdf.".$candidate, compact('collector'))
+            ->setPaper("A4", 'portrait');
+        return $pdf->download("{$candidate}_{}.pdf");
     }
 }
