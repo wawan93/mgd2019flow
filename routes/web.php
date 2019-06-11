@@ -29,4 +29,4 @@ Route::patch("/admin/ajax/accepted/save", "Admin\\AcceptedController@ajaxUpdate"
 Route::patch("/admin/ajax/declined/save", "Admin\\DeclinedController@ajaxUpdate");
 Route::patch("/admin/ajax/events/save", "Admin\\EventController@ajaxUpdate");
 
-Route::post("/admin/ajax/accepted/generate/{candidate}/{id}", "Admin\\AcceptedController@ajaxGenerate");
+Route::get("/admin/ajax/accepted/generate/{candidate}/{id}", "Admin\\AcceptedController@ajaxGenerate")->name("generate");

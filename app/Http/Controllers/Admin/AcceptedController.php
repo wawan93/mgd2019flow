@@ -98,6 +98,6 @@ class AcceptedController extends Controller
         $collector = Collector::find($id);
         $pdf = \PDF::loadView("pdf.".$candidate, compact('collector'))
             ->setPaper("A4", 'portrait');
-        return $pdf->download("{$candidate}_{}.pdf");
+        return $pdf->download("{$candidate}_{$id}.pdf");
     }
 }

@@ -364,13 +364,10 @@
                 КПП (банка) 773601001<br>
             </td>
             <td>
-
-                Фамилия Имя Отчество
-                Адрес сборщика
-                Паспортные данные
-
-
-                Реквизиты банковского счета
+                {{ $collector->surname }} {{ $collector->name }} {{ $collector->middlename }}<br>
+                Адрес места жительства: {{ $collector->passport_address }}<br>
+                Паспорт гражданина РФ {{ $collector->passport_number }},<br>
+                выдан – {{ $collector->passport_issue_date }} {{ $collector->passport_issued_by }} <br>
             </td>
         </tr>
         <tr>
