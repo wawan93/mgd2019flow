@@ -277,6 +277,10 @@
             </label>
             </div>
           </td>
+            <td>
+              <a target="_blank" href="{!! route('generate', ['candidate'=>'besedina', 'id' => $item->id])  !!}">Договор с Бесединой</a>
+              <a target="_blank" href="{!! route('generate', ['candidate'=>'bryukhanova', 'id' => $item->id]) !!}">Договор с Брюхановой</a>
+            </td>
           </tr>
         @endforeach
         </tbody>
