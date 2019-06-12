@@ -68,7 +68,10 @@ class AcceptedController extends Controller
             'passport_number',
             'passport_issue_date',
             'passport_issued_by',
-            'passport_address'
+            'passport_address',
+            'account_number',
+            'account_bank',
+            'account_bik',
         ];
 
         $field = $request->get('field');
