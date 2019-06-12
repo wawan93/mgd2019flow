@@ -17,6 +17,22 @@ class AcceptedController extends Controller
     }
 
     /**
+     * Fire the specified resource from storage.
+     *
+     * @param  int  $id
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function destroy($id)
+    {
+        $collector = Collector::find($id);
+        $collector->status = 'fired';
+        $collector->save();
+
+        return redirect()->back();
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\View\View

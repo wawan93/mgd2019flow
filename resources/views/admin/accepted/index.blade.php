@@ -312,6 +312,13 @@
               <a target="_blank" href="{!! route('generate', ['candidate'=>'besedina', 'id' => $item->id])  !!}">Договор с Бесединой</a>
               <a target="_blank" href="{!! route('generate', ['candidate'=>'bryukhanova', 'id' => $item->id]) !!}">Договор с Брюхановой</a>
             </td>
+            <td>
+              <form method="POST" action="{{ url('/admin/accepted' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                {{ method_field('DELETE') }}
+                {{ csrf_field() }}
+                <button type="submit" class="btn btn-danger btn-sm" title="Delete Collector" onclick="return confirm('Confirm delete?')"><i class="fa fa-trash-o" aria-hidden="true"></i>Уволить</button>
+              </form>
+            </td>
           </tr>
         @endforeach
         </tbody>
