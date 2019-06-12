@@ -26,7 +26,8 @@ class ResearchController extends Controller
         $perPage = 250;
 
         $query = Collector::oldest()
-            ->whereIn("status", ['', 'new', 'research']);
+            ->whereNotIn("research_status", ['approved', 'attention', 'declined',])
+            ->orWhereNull('research_status');
 
         if (!empty($keyword)) {
             $collector = $query->where('name', 'LIKE', "%$keyword%")
@@ -136,7 +137,7 @@ class ResearchController extends Controller
         ];
 
         if (!in_array($request->get('field'), $researchFields)) {
-            return response()->json(['error'=>'true', 'error_text'=>'нельзя менять это поле']);
+            return response()->json(['error' => 'true', 'error_text' => 'нельзя менять это поле']);
         }
 
         if (in_array($request->get('field'), $researchFields)) {
