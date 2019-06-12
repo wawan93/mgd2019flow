@@ -32,16 +32,6 @@ class AcceptedController extends Controller
         if (!empty($keyword)) {
             $collector = $query->where('name', 'LIKE', "%$keyword%")
                 ->orWhere('surname', 'LIKE', "%$keyword%")
-                ->orWhereRaw('DATE_FORMAT(interview_date, \'%d/%m\') LIKE ?', "%$keyword%")
-                ->orWhereRaw('DATE_FORMAT(interview_date, \'%d.%m\') LIKE ?', "%$keyword%")
-                ->orWhereRaw('DATE_FORMAT(interview_date, \'%d-%m\') LIKE ?', "%$keyword%")
-                ->orWhereRaw('DATE_FORMAT(interview_date, \'%d %m\') LIKE ?', "%$keyword%")
-                ->orWhereRaw('DATE_FORMAT(interview_date, \'%d%m\') LIKE ?', "%$keyword%")
-                ->orWhereRaw('DATE_FORMAT(interview_date, \'%m/%d\') LIKE ?', "%$keyword%")
-                ->orWhereRaw('DATE_FORMAT(interview_date, \'%m.%d\') LIKE ?', "%$keyword%")
-                ->orWhereRaw('DATE_FORMAT(interview_date, \'%m-%d\') LIKE ?', "%$keyword%")
-                ->orWhereRaw('DATE_FORMAT(interview_date, \'%m %d\') LIKE ?', "%$keyword%")
-                ->orWhereRaw('DATE_FORMAT(interview_date, \'%m%d\') LIKE ?', "%$keyword%")
                 ->paginate($perPage);
         } else {
             $collector = $query->paginate($perPage);
