@@ -32,10 +32,11 @@
           <th>Email</th>
           <th>Вердикт ресерча</th>
           <th>Комментарий ресерча</th>
-          <th>Дата интервью</th>
           <th>Коммент</th>
           <th>Готовность</th>
           <th>Паспорт</th>
+          <th>Реквизиты</th>
+          <th>Договоры</th>
         </tr>
         </thead>
         <tbody>
@@ -48,19 +49,6 @@
           <td>{{ $item->email }}</td>
           <td>{{ $item->research_status_text }}</td>
           <td>{{ $item->research_comment }}</td>
-          <td>
-            <input
-              data-id="{{ $item->id }}"
-              data-field="interview_date"
-              name="interview_date"
-              type="datetime-local"
-              class="form-control"
-              style="width: 220px;"
-              value="{{ $item->interview_date ?
-               \Carbon\Carbon::createFromTimeString($item->interview_date)->toDateTimeLocalString() :
-              "" }}"
-            />
-          </td>
           <td>
             {!! Form::textarea(
             'comment',
@@ -274,6 +262,49 @@
                 'rows' => '3',
                 ]
               ) !!}
+            </label>
+            </div>
+          </td>
+          <td class="collector-table__account">
+            <div class="collector-table__account-fields">
+            <label class="col-form-label col-form-label-sm">
+              Номер счёта
+              {!! Form::text(
+                'account_number',
+                $item->account_number,
+                [
+                'class' => 'form-control form-control-sm',
+                'data-id' => $item->id,
+                'data-field' => 'account_number',
+                'placeholder' => '',
+                'style' => 'min-width: 120px',
+                ]
+              ) !!}
+            </label>
+            <label class="col-form-label col-form-label-sm">
+              Банк
+              {!! Form::textarea(
+                'account_bank',
+                $item->account_bank,
+                [
+                'class' => 'form-control form-control-sm',
+                'data-id' => $item->id,
+                'data-field' => 'account_bank',
+                'style' => 'min-width: 120px',
+                ]
+              ) !!}
+            </label>
+            <label class="col-form-label col-form-label-sm">
+              БИК банка
+            {!! Form::text(
+              'account_bik',
+              $item->account_bik,
+              [
+                'class' => 'form-control form-control-sm',
+                'data-id' => $item->id,
+                'data-field' => 'account_bik',
+              ]
+            ) !!}
             </label>
             </div>
           </td>

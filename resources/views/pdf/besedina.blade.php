@@ -368,6 +368,11 @@
                 Адрес места жительства: {{ $collector->passport_address }}<br>
                 Паспорт гражданина РФ {{ $collector->passport_number }},<br>
                 выдан – {{ $collector->passport_issue_date }} {{ $collector->passport_issued_by }} <br>
+                <br>
+                счет:<br>
+                № {{ $collector->account_number }}<br>
+                в {{ $collector->account_bank }}<br>
+                БИК {{ $collector->account_bik }}<br>
             </td>
         </tr>
         <tr>
